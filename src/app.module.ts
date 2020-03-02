@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Connection } from 'typeorm';
 import { UsersModule } from './users/user.module';
-import { UsersHttpModule } from './users-http/users-http.module';
+import { UsersHttpModule } from './users/users-http.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), UsersModule, UsersHttpModule],
