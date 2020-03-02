@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -11,6 +11,6 @@ export class User {
   @Column()
   lastName: string;
 
-  @Column()
-  age: number;
+  @Column({ default: true })
+  isActive: boolean;
 }
