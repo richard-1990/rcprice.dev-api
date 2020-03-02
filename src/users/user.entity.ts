@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { TimeStamps } from '../db/entity/timestamps.entity';
 
 @Entity()
-export class User {
+export class User extends TimeStamps {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,7 +11,4 @@ export class User {
 
   @Column()
   lastName: string;
-
-  @Column({ default: true })
-  isActive: boolean;
 }
