@@ -8,8 +8,8 @@ export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
-    private readonly connection: Connection,
-  ) {}
+  ) // private readonly connection: Connection,
+  {}
 
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
@@ -20,19 +20,18 @@ export class UserService {
   }
 
   async create(user: any): Promise<any> {
-    let userEntity = new User();
-    userEntity = Object.assign(user, userEntity);
-    return await this.connection.manager.save(userEntity);
+    return this.usersRepository.save({ ...user });
   }
 
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
+  async delete(id: string): Promise<string> {
+    await this.usersRepository.softDelete(id);
+    return 'User successfully deleted';
   }
 
-  async createMany(users: User[]) {
-    await this.connection.transaction(async manager => {
-      await manager.save(users[0]);
-      await manager.save(users[1]);
-    });
-  }
+  // async createMany(users: User[]) {
+  //   await this.connection.transaction(async manager => {
+  //     await manager.save(users[0]);
+  //     await manager.save(users[1]);
+  //   });
+  // }
 }
