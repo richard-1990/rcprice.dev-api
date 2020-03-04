@@ -6,15 +6,23 @@ import { User } from './user.entity';
 
 describe('Users Controller', () => {
   let usersController: UsersController;
-  let userService: UserService;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       controllers: [UsersController],
-      providers: [UserService],
+      providers: [
+        {
+          provide: UserService,
+          useValue: {
+            findAll: jest.fn(),
+            findOne: jest.fn(),
+            Create: jest.fn(),
+            delete: jest.fn(),
+          },
+        },
+      ],
     }).compile();
 
-    userService = moduleRef.get<UserService>(UserService);
     usersController = moduleRef.get<UsersController>(UsersController);
   });
 
