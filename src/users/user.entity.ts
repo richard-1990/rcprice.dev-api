@@ -17,4 +17,7 @@ export class User extends TimeStamps {
 
   @Column()
   lastName: string;
+
+  @Column()
+  email: string;
 }

@@ -1,6 +1,16 @@
-import { Controller, Get, Param, Post, Body, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  Post,
+  Body,
+  Delete,
+  UsePipes,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
+import { schema as userSchema } from './user.schema';
+import { JoiValidationPipe } from '../pipes/joi-validation.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -17,8 +27,13 @@ export class UsersController {
   }
 
   @Post()
+  @UsePipes(new JoiValidationPipe(userSchema))
   postUser(@Body() user: any) {
-    return this.usersService.create(user);
+    try {
+      return this.usersService.create(user);
+    } catch (e) {
+      return 'shit';
+    }
   }
 
   @Delete(':id')
