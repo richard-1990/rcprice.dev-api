@@ -18,7 +18,14 @@ export class UserService {
     return this.usersRepository.findOne(id);
   }
 
-  async create(user: any): Promise<any> {
+  update(id: string, user: User): Promise<User> {
+    console.log('here');
+    const existingUser = this.usersRepository.findOne(id);
+    console.log(existingUser);
+    return existingUser;
+  }
+
+  async create(user: User): Promise<any> {
     return this.usersRepository.save({ ...user });
   }
 

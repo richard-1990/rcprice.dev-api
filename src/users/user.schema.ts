@@ -1,15 +1,19 @@
 import * as Joi from '@hapi/joi';
 
-export const schema = Joi.object({
+const baseRules = {
   firstName: Joi.string(),
   lastName: Joi.string(),
   email: Joi.string().email(),
-});
+};
 
-function getSchemaForPUT() {
-  return schema;
-}
-
-function getSchemaForPATCH() {
-  return schema;
-}
+export default {
+  POST: Joi.object({
+    ...baseRules,
+    firstName: baseRules.firstName.required(),
+    lastName: baseRules.lastName.required(),
+    email: baseRules.email.required(),
+  }),
+  PATCH: Joi.object({
+    ...baseRules,
+  }),
+};

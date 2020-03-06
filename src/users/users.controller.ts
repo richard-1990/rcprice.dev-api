@@ -6,10 +6,11 @@ import {
   Body,
   Delete,
   UsePipes,
+  Patch,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
-import { schema as userSchema } from './user.schema';
+import userSchema from './user.schema';
 import { JoiValidationPipe } from '../pipes/joi-validation.pipe';
 
 @Controller('users')
@@ -27,10 +28,21 @@ export class UsersController {
   }
 
   @Post()
-  @UsePipes(new JoiValidationPipe(userSchema))
+  @UsePipes(new JoiValidationPipe(userSchema.POST))
   postUser(@Body() user: any) {
     try {
       return this.usersService.create(user);
+    } catch (e) {
+      return 'shit';
+    }
+  }
+
+  @Patch(':id')
+  @UsePipes(new JoiValidationPipe(userSchema.PATCH))
+  patchUser(@Body() user: any, @Param('id') id) {
+    console.log('eer?');
+    try {
+      return this.usersService.update(id, user);
     } catch (e) {
       return 'shit';
     }
