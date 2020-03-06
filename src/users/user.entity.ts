@@ -9,8 +9,8 @@ import { TimeStamps } from '../db/entity/timestamps.entity';
 
 @Entity()
 export class User extends TimeStamps {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   firstName: string;
