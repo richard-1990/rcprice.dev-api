@@ -24,7 +24,11 @@ export class UserService {
   }
 
   async create(user: User): Promise<any> {
-    return this.usersRepository.save({ ...user });
+    try {
+      return await this.usersRepository.save({ ...user });
+    } catch (e) {
+      return e;
+    }
   }
 
   async delete(id: string): Promise<string> {

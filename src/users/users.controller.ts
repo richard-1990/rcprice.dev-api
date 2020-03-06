@@ -29,9 +29,9 @@ export class UsersController {
 
   @Post()
   @UsePipes(new JoiValidationPipe(userSchema.POST))
-  postUser(@Body() user: any) {
+  async postUser(@Body() user: any) {
     try {
-      return this.usersService.create(user);
+      return await this.usersService.create(user);
     } catch (e) {
       return 'shit';
     }
