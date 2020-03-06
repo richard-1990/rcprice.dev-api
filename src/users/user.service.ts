@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Connection } from 'typeorm';
 import { User } from './user.entity';
@@ -18,11 +18,9 @@ export class UserService {
     return this.usersRepository.findOne(id);
   }
 
-  update(id: string, user: User): Promise<User> {
-    console.log('here');
-    const existingUser = this.usersRepository.findOne(id);
-    console.log(existingUser);
-    return existingUser;
+  async update(id: string, user: User): Promise<User> {
+    await this.usersRepository.update(id, user);
+    return this.usersRepository.findOne(id);
   }
 
   async create(user: User): Promise<any> {

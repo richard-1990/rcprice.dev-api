@@ -40,7 +40,6 @@ export class UsersController {
   @Patch(':id')
   @UsePipes(new JoiValidationPipe(userSchema.PATCH))
   patchUser(@Body() user: any, @Param('id') id) {
-    console.log('eer?');
     try {
       return this.usersService.update(id, user);
     } catch (e) {
