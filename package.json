@@ -37,6 +37,7 @@
     "@types/jest": "24.0.11",
     "@types/node": "^8.0.29",
     "@types/supertest": "2.0.7",
+    "faker": "^4.1.0",
     "jest": "24.7.1",
     "prettier": "1.17.0",
     "start-server-webpack-plugin": "^2.2.5",
