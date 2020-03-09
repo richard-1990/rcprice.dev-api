@@ -35,11 +35,4 @@ export class UserService {
     await this.usersRepository.softDelete(id);
     return 'User successfully deleted';
   }
-
-  // async createMany(users: User[]) {
-  //   await this.connection.transaction(async manager => {
-  //     await manager.save(users[0]);
-  //     await manager.save(users[1]);
-  //   });
-  // }
 }
