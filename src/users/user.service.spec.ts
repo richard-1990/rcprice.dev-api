@@ -34,6 +34,7 @@ describe('UserService', () => {
       id: 1,
       firstName: 'richard',
       lastName: 'price',
+      email: 'test@email.com',
       createdAt: new Date('2020-03-04 09:44:48'),
       updatedAt: new Date('2020-03-04 09:44:48'),
     };

@@ -1,15 +1,19 @@
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
   OneToMany,
   BaseEntity,
+  Unique,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import { TimeStamps } from '../db/entity/timestamps.entity';
+import { Post } from '../post/post.entity';
 
 @Entity()
+@Unique(['email'])
 export class User extends TimeStamps {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -17,4 +21,10 @@ export class User extends TimeStamps {
 
   @Column()
   lastName: string;
+
+  @Column()
+  email: string;
+
+  @OneToMany(type => Post, post => post.user)
+  posts: Post[];
 }
