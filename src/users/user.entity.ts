@@ -4,10 +4,12 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
   BaseEntity,
+  Unique,
 } from 'typeorm';
 import { TimeStamps } from '../db/entity/timestamps.entity';
 
 @Entity()
+@Unique(['email'])
 export class User extends TimeStamps {
   @PrimaryGeneratedColumn()
   id: number;
@@ -17,4 +19,7 @@ export class User extends TimeStamps {
 
   @Column()
   lastName: string;
+
+  @Column()
+  email: string;
 }
