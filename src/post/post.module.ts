@@ -10,4 +10,4 @@ import { PostController } from './post.controller';
   controllers: [PostController],
   exports: [TypeOrmModule],
 })
-export class UsersModule {}
+export class PostModule {}
