@@ -18,7 +18,21 @@ export class PostService {
     return this.postRepository.findOne(id);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.postRepository.delete(id);
+  async create(post: Post): Promise<any> {
+    try {
+      return await this.postRepository.save({ ...post });
+    } catch (e) {
+      return e;
+    }
+  }
+
+  async update(id: string, post: Post): Promise<Post> {
+    await this.postRepository.update(id, post);
+    return this.postRepository.findOne(id);
+  }
+
+  async delete(id: string): Promise<string> {
+    await this.postRepository.softDelete(id);
+    return 'Post successfully deleted';
   }
 }
